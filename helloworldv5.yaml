@@ -1,0 +1,47 @@
+apiVersion: apps/v5
+kind: Deployment
+metadata:
+  name: helloworldv5
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: helloworldv5
+  template:
+    metadata:
+      labels:
+        app: helloworldv5
+    spec:
+      containers:
+      - env:
+        - name: application_args
+          value: --spring.config.location=file:/tmp/properties/application-dev.properties
+        image: vishalsaini21121988/my-first-repo:v5
+        imagePullPolicy: Always
+        name: helloworldv5
+        resources: {}
+        volumeMounts:
+        - mountPath: /tmp/properties
+          name: volume-tqzhs
+      imagePullSecrets:
+      - name: regcred
+      restartPolicy: Always
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: special-config
+        name: volume-tqzhs
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworldv5-lb
+  labels:
+    app: helloworldv5
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8085
+  selector:
+    app: helloworldv5
