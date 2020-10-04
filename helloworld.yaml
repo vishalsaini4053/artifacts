@@ -13,15 +13,22 @@ spec:
         app: helloworld
     spec:
       containers:
-      - name: helloworld
-        image: vishalsaini21121988/my-first-repo
-        imagePullPolicy: Always
-        ports:
-        - name: helloworld
-          containerPort: 8085
-          protocol: TCP
+      - env:
+          - name: application_args
+            value: >-
+              --spring.config.location=file:/home/vishal/tmp/application-dev.properties          
+        name: helloworld
+        image: vishalsaini21121988/my-first-repo:v4
+        volumeMounts:
+          - mountPath: /tmp/application-dev.properties/properties
+            name: volume-tqzhs
+        imagePullPolicy: Always        
       imagePullSecrets:
         - name: regcred
+      volumes:
+        - configMap:
+            name: application-dev.properties
+          name: volume-tqzhs
 ---
 apiVersion: v1
 kind: Service

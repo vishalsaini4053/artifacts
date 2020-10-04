@@ -4,4 +4,4 @@ RUN curl -OL "https://github.com/vishalsaini4053/artifacts/raw/master/helloworld
 && ls -lrt
 
 EXPOSE 8085
-ENTRYPOINT ["java","-jar","/helloworld-microservice-1.0-SNAPSHOT.jar","--spring.config.location=file:/application-dev.properties"]
+CMD ["sh", "-c", "java -jar helloworld-microservice-1.0-SNAPSHOT.jar $application_args"]

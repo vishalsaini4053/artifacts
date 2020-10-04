@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: special-config
   namespace: default
-data:
-  MESSAGE: It is message from Config map
+data:  
+  application-dev.properties: "MESSAGE=It_is_message_from_Config_map"
