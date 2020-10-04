@@ -4,4 +4,4 @@ metadata:
   name: special-config
   namespace: default
 data:  
-  application-dev.properties: "MESSAGE=It_is_message_from_Config_map"
+  application-dev.properties: "MESSAGE=EXTERNAL MESSAGE"
