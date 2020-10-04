@@ -1,5 +1,5 @@
 FROM openjdk:8
-RUN curl -O https://github.com/vishalsaini4053/artifacts/blob/master/helloworld-microservice-1.0-SNAPSHOT.jar \
+RUN curl -OL "https://github.com/vishalsaini4053/artifacts/raw/master/helloworld-microservice-1.0-SNAPSHOT.jar" \
 && chmod 755 helloworld-microservice-1.0-SNAPSHOT.jar \
 && ls -lrt
 
